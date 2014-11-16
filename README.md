@@ -3,12 +3,10 @@ Money integration/staging tree
 
 ![](https://raw.githubusercontent.com/moneyfoundation/money/b2211281541530590168d2cee0567e6b673b8a3e/src/qt/res/images/wallet_bgcoin.png)
 
-http://www.moneyalliance.net
-
-Copyright (c) 2009-2014 Bitcoin Developers
-Copyright (c) 2011-2014 Litecoin Developers
-Copyright (c) 2011-2014 Worldcoin Developers
-Copyright (c) 2013-2014 Money Developers
+Copyright (c) 2009-2014 Bitcoin Developers<br>
+Copyright (c) 2011-2014 Litecoin Developers<br>
+Copyright (c) 2011-2014 Worldcoin Developers<br>
+Copyright (c) 2013-2014 Money Developers<br>
 
 What is Money?
 ----------------
