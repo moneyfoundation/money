@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2013 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_KEY_H
-#define WORLDCOIN_KEY_H
+#ifndef MONEY_KEY_H
+#define MONEY_KEY_H
 
 #include <vector>
 

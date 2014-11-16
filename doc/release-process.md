@@ -6,7 +6,7 @@ Release Process
 ###update (commit) version in sources
 
 
-	worldcoin-qt.pro
+	money-qt.pro
 	contrib/verifysfbinaries/verify.sh
 	doc/README*
 	share/setup.nsi
@@ -24,7 +24,7 @@ Release Process
 
 ##perform gitian builds
 
- From a directory containing the worldcoin source, gitian-builder and gitian.sigs
+ From a directory containing the money source, gitian-builder and gitian.sigs
   
 	export SIGNER=(your gitian key, ie bluematt, sipa, etc)
 	export VERSION=0.8.0
@@ -42,54 +42,54 @@ Release Process
 	wget 'http://downloads.sourceforge.net/project/boost/boost/1.50.0/boost_1_50_0.tar.bz2'
 	wget 'http://releases.qt-project.org/qt4/source/qt-everywhere-opensource-src-4.8.3.tar.gz'
 	cd ..
-	./bin/gbuild ../worldcoin/contrib/gitian-descriptors/boost-win32.yml
+	./bin/gbuild ../money/contrib/gitian-descriptors/boost-win32.yml
 	mv build/out/boost-win32-1.50.0-gitian2.zip inputs/
-	./bin/gbuild ../worldcoin/contrib/gitian-descriptors/qt-win32.yml
+	./bin/gbuild ../money/contrib/gitian-descriptors/qt-win32.yml
 	mv build/out/qt-win32-4.8.3-gitian-r1.zip inputs/
-	./bin/gbuild ../worldcoin/contrib/gitian-descriptors/deps-win32.yml
-	mv build/out/worldcoin-deps-0.0.5.zip inputs/
+	./bin/gbuild ../money/contrib/gitian-descriptors/deps-win32.yml
+	mv build/out/money-deps-0.0.5.zip inputs/
 
- Build worldcoind and worldcoin-qt on Linux32, Linux64, and Win32:
+ Build moneyd and money-qt on Linux32, Linux64, and Win32:
   
-	./bin/gbuild --commit worldcoin=v${VERSION} ../worldcoin/contrib/gitian-descriptors/gitian.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs/ ../worldcoin/contrib/gitian-descriptors/gitian.yml
+	./bin/gbuild --commit money=v${VERSION} ../money/contrib/gitian-descriptors/gitian.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION} --destination ../gitian.sigs/ ../money/contrib/gitian-descriptors/gitian.yml
 	pushd build/out
-	zip -r worldcoin-${VERSION}-linux-gitian.zip *
-	mv worldcoin-${VERSION}-linux-gitian.zip ../../
+	zip -r money-${VERSION}-linux-gitian.zip *
+	mv money-${VERSION}-linux-gitian.zip ../../
 	popd
-	./bin/gbuild --commit worldcoin=v${VERSION} ../worldcoin/contrib/gitian-descriptors/gitian-win32.yml
-	./bin/gsign --signer $SIGNER --release ${VERSION}-win32 --destination ../gitian.sigs/ ../worldcoin/contrib/gitian-descriptors/gitian-win32.yml
+	./bin/gbuild --commit money=v${VERSION} ../money/contrib/gitian-descriptors/gitian-win32.yml
+	./bin/gsign --signer $SIGNER --release ${VERSION}-win32 --destination ../gitian.sigs/ ../money/contrib/gitian-descriptors/gitian-win32.yml
 	pushd build/out
-	zip -r worldcoin-${VERSION}-win32-gitian.zip *
-	mv worldcoin-${VERSION}-win32-gitian.zip ../../
+	zip -r money-${VERSION}-win32-gitian.zip *
+	mv money-${VERSION}-win32-gitian.zip ../../
 	popd
 
   Build output expected:
 
-  1. linux 32-bit and 64-bit binaries + source (worldcoin-${VERSION}-linux-gitian.zip)
-  2. windows 32-bit binary, installer + source (worldcoin-${VERSION}-win32-gitian.zip)
+  1. linux 32-bit and 64-bit binaries + source (money-${VERSION}-linux-gitian.zip)
+  2. windows 32-bit binary, installer + source (money-${VERSION}-win32-gitian.zip)
   3. Gitian signatures (in gitian.sigs/${VERSION}[-win32]/(your gitian key)/
 
 repackage gitian builds for release as stand-alone zip/tar/installer exe
 
 **Linux .tar.gz:**
 
-	unzip worldcoin-${VERSION}-linux-gitian.zip -d worldcoin-${VERSION}-linux
-	tar czvf worldcoin-${VERSION}-linux.tar.gz worldcoin-${VERSION}-linux
-	rm -rf worldcoin-${VERSION}-linux
+	unzip money-${VERSION}-linux-gitian.zip -d money-${VERSION}-linux
+	tar czvf money-${VERSION}-linux.tar.gz money-${VERSION}-linux
+	rm -rf money-${VERSION}-linux
 
 **Windows .zip and setup.exe:**
 
-	unzip worldcoin-${VERSION}-win32-gitian.zip -d worldcoin-${VERSION}-win32
-	mv worldcoin-${VERSION}-win32/worldcoin-*-setup.exe .
-	zip -r worldcoin-${VERSION}-win32.zip bitcoin-${VERSION}-win32
-	rm -rf worldcoin-${VERSION}-win32
+	unzip money-${VERSION}-win32-gitian.zip -d money-${VERSION}-win32
+	mv money-${VERSION}-win32/money-*-setup.exe .
+	zip -r money-${VERSION}-win32.zip bitcoin-${VERSION}-win32
+	rm -rf money-${VERSION}-win32
 
 **Perform Mac build:**
 
   OSX binaries are created by Gavin Andresen on a 32-bit, OSX 10.6 machine.
 
-	qmake RELEASE=1 USE_UPNP=1 USE_QRCODE=1 worldcoin-qt.pro
+	qmake RELEASE=1 USE_UPNP=1 USE_QRCODE=1 money-qt.pro
 	make
 	export QTDIR=/opt/local/share/qt4  # needed to find translations/qt_*.qm files
 	T=$(contrib/qt_translations.py $QTDIR/translations src/qt/locale)
@@ -107,14 +107,14 @@ repackage gitian builds for release as stand-alone zip/tar/installer exe
 
 * create SHA256SUMS for builds, and PGP-sign it
 
-* update worldcoin.org version
+* update money.org version
   make sure all OS download links go to the right versions
 
 * update forum version
 
 * update wiki download links
 
-* update wiki changelog: [https://en.worldcoin.it/wiki/Changelog](https://en.bitcoin.it/wiki/Changelog)
+* update wiki changelog: [https://en.money.it/wiki/Changelog](https://en.bitcoin.it/wiki/Changelog)
 
 Commit your signature to gitian.sigs:
 
@@ -129,32 +129,32 @@ Commit your signature to gitian.sigs:
 
 ### After 3 or more people have gitian-built, repackage gitian-signed zips:
 
-From a directory containing worldcoin source, gitian.sigs and gitian zips
+From a directory containing money source, gitian.sigs and gitian zips
 
 	export VERSION=0.5.1
-	mkdir worldcoin-${VERSION}-linux-gitian
-	pushd worldcoin-${VERSION}-linux-gitian
-	unzip ../worldcoin-${VERSION}-linux-gitian.zip
+	mkdir money-${VERSION}-linux-gitian
+	pushd money-${VERSION}-linux-gitian
+	unzip ../money-${VERSION}-linux-gitian.zip
 	mkdir gitian
-	cp ../worldcoin/contrib/gitian-downloader/*.pgp ./gitian/
+	cp ../money/contrib/gitian-downloader/*.pgp ./gitian/
 	for signer in $(ls ../gitian.sigs/${VERSION}/); do
-	 cp ../gitian.sigs/${VERSION}/${signer}/worldcoin-build.assert ./gitian/${signer}-build.assert
-	 cp ../gitian.sigs/${VERSION}/${signer}/worldcoin-build.assert.sig ./gitian/${signer}-build.assert.sig
+	 cp ../gitian.sigs/${VERSION}/${signer}/money-build.assert ./gitian/${signer}-build.assert
+	 cp ../gitian.sigs/${VERSION}/${signer}/money-build.assert.sig ./gitian/${signer}-build.assert.sig
 	done
-	zip -r worldcoin-${VERSION}-linux-gitian.zip *
-	cp worldcoin-${VERSION}-linux-gitian.zip ../
+	zip -r money-${VERSION}-linux-gitian.zip *
+	cp money-${VERSION}-linux-gitian.zip ../
 	popd
-	mkdir worldcoin-${VERSION}-win32-gitian
-	pushd worldcoin-${VERSION}-win32-gitian
-	unzip ../worldcoin-${VERSION}-win32-gitian.zip
+	mkdir money-${VERSION}-win32-gitian
+	pushd money-${VERSION}-win32-gitian
+	unzip ../money-${VERSION}-win32-gitian.zip
 	mkdir gitian
-	cp ../worldcoin/contrib/gitian-downloader/*.pgp ./gitian/
+	cp ../money/contrib/gitian-downloader/*.pgp ./gitian/
 	for signer in $(ls ../gitian.sigs/${VERSION}-win32/); do
-	 cp ../gitian.sigs/${VERSION}-win32/${signer}/worldcoin-build.assert ./gitian/${signer}-build.assert
-	 cp ../gitian.sigs/${VERSION}-win32/${signer}/worldcoin-build.assert.sig ./gitian/${signer}-build.assert.sig
+	 cp ../gitian.sigs/${VERSION}-win32/${signer}/money-build.assert ./gitian/${signer}-build.assert
+	 cp ../gitian.sigs/${VERSION}-win32/${signer}/money-build.assert.sig ./gitian/${signer}-build.assert.sig
 	done
-	zip -r worldcoin-${VERSION}-win32-gitian.zip *
-	cp worldcoin-${VERSION}-win32-gitian.zip ../
+	zip -r money-${VERSION}-win32-gitian.zip *
+	cp money-${VERSION}-win32-gitian.zip ../
 	popd
 
 - Upload gitian zips to SourceForge

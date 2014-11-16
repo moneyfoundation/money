@@ -107,7 +107,7 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_parse)
     Array tests = read_json("base58_keys_valid.json");
     std::vector<unsigned char> result;
     CBitcoinSecret secret;
-    CWorldcoinAddress addr;
+    CMoneyAddress addr;
     // Save global state
     bool fTestNet_stored = fTestNet;
 
@@ -130,7 +130,7 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_parse)
         {
             bool isCompressed = find_value(metadata, "isCompressed").get_bool();
             // Must be valid private key
-            // Note: CBitcoinSecret::SetString tests isValid, whereas CWorldcoinAddress does not!
+            // Note: CBitcoinSecret::SetString tests isValid, whereas CMoneyAddress does not!
             BOOST_CHECK_MESSAGE(secret.SetString(exp_base58string), "!SetString:"+ strTest);
             BOOST_CHECK_MESSAGE(secret.IsValid(), "!IsValid:" + strTest);
             CKey privkey = secret.GetKey();
@@ -214,16 +214,16 @@ BOOST_AUTO_TEST_CASE(base58_keys_valid_gen)
                 BOOST_ERROR("Bad addrtype: " << strTest);
                 continue;
             }
-            CWorldcoinAddress addrOut;
-            BOOST_CHECK_MESSAGE(boost::apply_visitor(CWorldcoinAddressVisitor(&addrOut), dest), "encode dest: " + strTest);
+            CMoneyAddress addrOut;
+            BOOST_CHECK_MESSAGE(boost::apply_visitor(CMoneyAddressVisitor(&addrOut), dest), "encode dest: " + strTest);
             BOOST_CHECK_MESSAGE(addrOut.ToString() == exp_base58string, "mismatch: " + strTest);
         }
     }
 
     // Visiting a CNoDestination must fail
-    CWorldcoinAddress dummyAddr;
+    CMoneyAddress dummyAddr;
     CTxDestination nodest = CNoDestination();
-    BOOST_CHECK(!boost::apply_visitor(CWorldcoinAddressVisitor(&dummyAddr), nodest));
+    BOOST_CHECK(!boost::apply_visitor(CMoneyAddressVisitor(&dummyAddr), nodest));
 
     // Restore global state
     fTestNet = fTestNet_stored;
@@ -235,7 +235,7 @@ BOOST_AUTO_TEST_CASE(base58_keys_invalid)
     Array tests = read_json("base58_keys_invalid.json"); // Negative testcases
     std::vector<unsigned char> result;
     CBitcoinSecret secret;
-    CWorldcoinAddress addr;
+    CMoneyAddress addr;
 
     BOOST_FOREACH(Value& tv, tests)
     {

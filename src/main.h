@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_MAIN_H
-#define WORLDCOIN_MAIN_H
+#ifndef MONEY_MAIN_H
+#define MONEY_MAIN_H
 
 #include "bignum.h"
 #include "sync.h"
@@ -160,7 +160,7 @@ bool SendMessages(CNode* pto, bool fSendTrickle);
 /** Run an instance of the script checking thread */
 void ThreadScriptCheck();
 /** Run the miner threads */
-void GenerateWorldcoins(bool fGenerate, CWallet* pwallet);
+void GenerateMoneys(bool fGenerate, CWallet* pwallet);
 /** Generate a new block, without valid proof-of-work */
 CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn);
 CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey);
@@ -596,7 +596,7 @@ public:
      */
     unsigned int GetP2SHSigOpCount(CCoinsViewCache& mapInputs) const;
 
-    /** Amount of worldcoins spent by this transaction.
+    /** Amount of moneys spent by this transaction.
         @return sum of all outputs (note: does not include fees)
      */
     int64 GetValueOut() const
@@ -611,7 +611,7 @@ public:
         return nValueOut;
     }
 
-    /** Amount of worldcoins coming in to this transaction
+    /** Amount of moneys coming in to this transaction
         Note that lightweight clients may not know anything besides the hash of previous transactions,
         so may not be able to calculate this.
 

@@ -2,7 +2,7 @@
 #include "ui_rpcconsole.h"
 
 #include "clientmodel.h"
-#include "worldcoinrpc.h"
+#include "moneyrpc.h"
 #include "guiutil.h"
 #include "main.h"
 
@@ -332,7 +332,7 @@ void RPCConsole::clear()
                 "b { color: #590607; } "
                 );
 
-    message(CMD_REPLY, (tr("Welcome to the Worldcoin RPC console.") + "<br>" +
+    message(CMD_REPLY, (tr("Welcome to the Money RPC console.") + "<br>" +
                         tr("Use up and down arrows to navigate history, and <b>Ctrl-L</b> to clear screen.") + "<br>" +
                         tr("Type <b>help</b> for an overview of available commands.")), true);
 }

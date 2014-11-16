@@ -1,9 +1,9 @@
 // Copyright (c) 2011-2013 PPCoin developers
-// Copyright (c) 2013 WORLDCOIN developers
+// Copyright (c) 2013 MONEY developers
 // Distributed under conditional MIT/X11 open source software license
 // see the accompanying file COPYING
-#ifndef WORLDCOIN_CHECKPOINTSYNC_H
-#define  WORLDCOIN_CHECKPOINTSYNC_H
+#ifndef MONEY_CHECKPOINTSYNC_H
+#define  MONEY_CHECKPOINTSYNC_H
 
 #include "net.h"
 #include "util.h"

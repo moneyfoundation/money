@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2012 The Bitcoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_TXDB_LEVELDB_H
-#define WORLDCOIN_TXDB_LEVELDB_H
+#ifndef MONEY_TXDB_LEVELDB_H
+#define MONEY_TXDB_LEVELDB_H
 
 #include "main.h"
 #include "leveldb.h"
@@ -55,4 +55,4 @@ public:
     bool WriteCheckpointPubKey(const std::string& strPubKey);
 };
 
-#endif // WORLDCOIN_TXDB_LEVELDB_H
+#endif // MONEY_TXDB_LEVELDB_H

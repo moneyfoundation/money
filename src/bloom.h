@@ -1,8 +1,8 @@
 // Copyright (c) 2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_BLOOM_H
-#define WORLDCOIN_BLOOM_H
+#ifndef MONEY_BLOOM_H
+#define MONEY_BLOOM_H
 
 #include <vector>
 
@@ -88,4 +88,4 @@ public:
     void UpdateEmptyFull();
 };
 
-#endif /* WORLDCOIN_BLOOM_H */
+#endif /* MONEY_BLOOM_H */

@@ -1,5 +1,5 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The worldcoin Developers
+// Copyright (c) 2009-2012 The money Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,8 +12,8 @@
 // - E-mail usually won't line-break if there's no punctuation to break at.
 // - Double-clicking selects the whole number as one word if it's all alphanumeric.
 //
-#ifndef WORLDCOIN_BASE58_H
-#define WORLDCOIN_BASE58_H
+#ifndef MONEY_BASE58_H
+#define MONEY_BASE58_H
 
 #include <string>
 #include <vector>
@@ -249,30 +249,30 @@ public:
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
 
-/** base58-encoded Worldcoin addresses.
+/** base58-encoded Money addresses.
  * Public-key-hash-addresses have version 73 (or 127 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 5 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CWorldcoinAddress;
-class CWorldcoinAddressVisitor : public boost::static_visitor<bool>
+class CMoneyAddress;
+class CMoneyAddressVisitor : public boost::static_visitor<bool>
 {
 private:
-    CWorldcoinAddress *addr;
+    CMoneyAddress *addr;
 public:
-    CWorldcoinAddressVisitor(CWorldcoinAddress *addrIn) : addr(addrIn) { }
+    CMoneyAddressVisitor(CMoneyAddress *addrIn) : addr(addrIn) { }
     bool operator()(const CKeyID &id) const;
     bool operator()(const CScriptID &id) const;
     bool operator()(const CNoDestination &no) const;
 };
 
-class CWorldcoinAddress : public CBase58Data
+class CMoneyAddress : public CBase58Data
 {
 public:
     enum
     {
-        PUBKEY_ADDRESS = 73, // Worldcoin addresses start with W
+        PUBKEY_ADDRESS = 110, // Money addresses start with M Pubkey = 110
         SCRIPT_ADDRESS = 5,
         PUBKEY_ADDRESS_TEST = 127,
         SCRIPT_ADDRESS_TEST = 196,
@@ -290,7 +290,7 @@ public:
 
     bool Set(const CTxDestination &dest)
     {
-        return boost::apply_visitor(CWorldcoinAddressVisitor(this), dest);
+        return boost::apply_visitor(CMoneyAddressVisitor(this), dest);
     }
 
     bool IsValid() const
@@ -323,21 +323,21 @@ public:
         return fExpectTestNet == fTestNet && vchData.size() == nExpectedSize;
     }
 
-    CWorldcoinAddress()
+    CMoneyAddress()
     {
     }
 
-    CWorldcoinAddress(const CTxDestination &dest)
+    CMoneyAddress(const CTxDestination &dest)
     {
         Set(dest);
     }
 
-    CWorldcoinAddress(const std::string& strAddress)
+    CMoneyAddress(const std::string& strAddress)
     {
         SetString(strAddress);
     }
 
-    CWorldcoinAddress(const char* pszAddress)
+    CMoneyAddress(const char* pszAddress)
     {
         SetString(pszAddress);
     }
@@ -390,9 +390,9 @@ public:
     }
 };
 
-bool inline CWorldcoinAddressVisitor::operator()(const CKeyID &id) const         { return addr->Set(id); }
-bool inline CWorldcoinAddressVisitor::operator()(const CScriptID &id) const      { return addr->Set(id); }
-bool inline CWorldcoinAddressVisitor::operator()(const CNoDestination &id) const { return false; }
+bool inline CMoneyAddressVisitor::operator()(const CKeyID &id) const         { return addr->Set(id); }
+bool inline CMoneyAddressVisitor::operator()(const CScriptID &id) const      { return addr->Set(id); }
+bool inline CMoneyAddressVisitor::operator()(const CNoDestination &id) const { return false; }
 
 /** A base58-encoded secret key */
 class CBitcoinSecret : public CBase58Data
@@ -400,8 +400,8 @@ class CBitcoinSecret : public CBase58Data
 public:
     enum
     {
-        PRIVKEY_ADDRESS = CWorldcoinAddress::PUBKEY_ADDRESS + 128,
-        PRIVKEY_ADDRESS_TEST = CWorldcoinAddress::PUBKEY_ADDRESS_TEST + 128,
+        PRIVKEY_ADDRESS = CMoneyAddress::PUBKEY_ADDRESS + 128,
+        PRIVKEY_ADDRESS_TEST = CMoneyAddress::PUBKEY_ADDRESS_TEST + 128,
     };
 
     void SetKey(const CKey& vchSecret)
@@ -457,4 +457,4 @@ public:
     }
 };
 
-#endif // WORLDCOIN_BASE58_H
+#endif // MONEY_BASE58_H

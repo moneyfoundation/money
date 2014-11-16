@@ -67,7 +67,7 @@
 #include "checkpointsync.h"
 
 #include "base58.h"
-#include "worldcoinrpc.h"
+#include "moneyrpc.h"
 #include "main.h"
 #include "txdb.h"
 #include "uint256.h"

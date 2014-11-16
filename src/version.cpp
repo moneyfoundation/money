@@ -6,9 +6,9 @@
 #include "version.h"
 
 // Name of client reported in the 'version' message. Report the same name
-// for both worldcoind and worldcoin-qt, to make it harder for attackers to
+// for both moneyd and money-qt, to make it harder for attackers to
 // target servers or GUI users specifically.
-const std::string CLIENT_NAME("WorldcoinFoundation");
+const std::string CLIENT_NAME("MoneyFoundation");
 
 // Client version number
 #define CLIENT_VERSION_SUFFIX   "-beta"

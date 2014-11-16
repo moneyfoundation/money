@@ -196,7 +196,7 @@ ReadKeyValue(CWallet* pwallet, CDataStream& ssKey, CDataStream& ssValue,
         {
             string strAddress;
             ssKey >> strAddress;
-            ssValue >> pwallet->mapAddressBook[CWorldcoinAddress(strAddress).Get()];
+            ssValue >> pwallet->mapAddressBook[CMoneyAddress(strAddress).Get()];
         }
         else if (strType == "tx")
         {
@@ -469,7 +469,7 @@ DBErrors CWalletDB::LoadWallet(CWallet* pwallet)
 void ThreadFlushWalletDB(const string& strFile)
 {
     // Make this thread recognisable as the wallet flushing thread
-    RenameThread("worldcoin-wallet");
+    RenameThread("money-wallet");
 
     static bool fOneThread;
     if (fOneThread)

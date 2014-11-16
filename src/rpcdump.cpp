@@ -1,9 +1,9 @@
-// Copyright (c) 2009-2012 worldcoin Developers
+// Copyright (c) 2009-2012 money Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "init.h" // for pwalletMain
-#include "worldcoinrpc.h"
+#include "moneyrpc.h"
 #include "ui_interface.h"
 #include "base58.h"
 
@@ -36,7 +36,7 @@ Value importprivkey(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() < 1 || params.size() > 3)
         throw runtime_error(
-            "importprivkey <worldcoinprivkey> [label] [rescan=true]\n"
+            "importprivkey <moneyprivkey> [label] [rescan=true]\n"
             "Adds a private key (as returned by dumpprivkey) to your wallet.");
 
     string strSecret = params[0].get_str();
@@ -79,13 +79,13 @@ Value dumpprivkey(const Array& params, bool fHelp)
 {
     if (fHelp || params.size() != 1)
         throw runtime_error(
-            "dumpprivkey <worldcoinaddress>\n"
-            "Reveals the private key corresponding to <worldcoinaddress>.");
+            "dumpprivkey <moneyaddress>\n"
+            "Reveals the private key corresponding to <moneyaddress>.");
 
     string strAddress = params[0].get_str();
-    CWorldcoinAddress address;
+    CMoneyAddress address;
     if (!address.SetString(strAddress))
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Worldcoin address");
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Money address");
     CKeyID keyID;
     if (!address.GetKeyID(keyID))
         throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to a key");

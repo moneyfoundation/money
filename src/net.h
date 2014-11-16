@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_NET_H
-#define WORLDCOIN_NET_H
+#ifndef MONEY_NET_H
+#define MONEY_NET_H
 
 #include <deque>
 #include <boost/array.hpp>

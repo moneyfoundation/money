@@ -25,7 +25,7 @@ SignMessagePage::SignMessagePage(QWidget *parent) :
 
 #if (QT_VERSION >= 0x040700)
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->addressIn_SM->setPlaceholderText(tr("Enter a Worldcoin address (e.g. WDS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"));
+    ui->addressIn_SM->setPlaceholderText(tr("Enter a Money address (e.g. WDS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"));
     ui->signatureOut_SM->setPlaceholderText(tr("Click \"Sign Message\" to generate signature"));
 #endif
 
@@ -35,7 +35,7 @@ SignMessagePage::SignMessagePage(QWidget *parent) :
     ui->messageIn_SM->installEventFilter(this);
     ui->signatureOut_SM->installEventFilter(this);
 
-    ui->signatureOut_SM->setFont(GUIUtil::worldcoinAddressFont());
+    ui->signatureOut_SM->setFont(GUIUtil::moneyAddressFont());
 
     // To make size minimal
     ui->statusLabel_SM->setText(tr("The entered address is invalid.") + QString(" ") + tr("Please check the address and try again."));
@@ -86,7 +86,7 @@ void SignMessagePage::on_signMessageButton_SM_clicked()
     /* Clear old signature to ensure users don't get confused on error with an old signature displayed */
     ui->signatureOut_SM->clear();
 
-    CWorldcoinAddress addr(ui->addressIn_SM->text().toStdString());
+    CMoneyAddress addr(ui->addressIn_SM->text().toStdString());
     if (!addr.IsValid())
     {
         ui->addressIn_SM->setValid(false);

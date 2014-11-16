@@ -25,8 +25,8 @@ VerifyMessagePage::VerifyMessagePage(QWidget *parent) :
 
 #if (QT_VERSION >= 0x040700)
     /* Do not move this to the XML file, Qt before 4.7 will choke on it */
-    ui->addressIn_VM->setPlaceholderText(tr("Enter a Worldcoin address (e.g. MNS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"));
-    ui->signatureIn_VM->setPlaceholderText(tr("Enter Worldcoin signature"));
+    ui->addressIn_VM->setPlaceholderText(tr("Enter a Money address (e.g. MNS17iag9jJgTHD1VXjvLCEnZuQ3rJDE9L)"));
+    ui->signatureIn_VM->setPlaceholderText(tr("Enter Money signature"));
 #endif
 
     GUIUtil::setupAddressWidget(ui->addressIn_VM, this);
@@ -35,7 +35,7 @@ VerifyMessagePage::VerifyMessagePage(QWidget *parent) :
     ui->messageIn_VM->installEventFilter(this);
     ui->signatureIn_VM->installEventFilter(this);
 
-    ui->signatureIn_VM->setFont(GUIUtil::worldcoinAddressFont());
+    ui->signatureIn_VM->setFont(GUIUtil::moneyAddressFont());
 
     // To make size minimal
     ui->statusLabel_VM->setText(tr("The entered address is invalid.") + QString(" ") + tr("Please check the address and try again."));
@@ -78,7 +78,7 @@ void VerifyMessagePage::on_addressBookButton_VM_clicked()
 
 void VerifyMessagePage::on_verifyMessageButton_VM_clicked()
 {
-    CWorldcoinAddress addr(ui->addressIn_VM->text().toStdString());
+    CMoneyAddress addr(ui->addressIn_VM->text().toStdString());
     if (!addr.IsValid())
     {
         ui->addressIn_VM->setValid(false);
@@ -119,7 +119,7 @@ void VerifyMessagePage::on_verifyMessageButton_VM_clicked()
         return;
     }
 
-    if (!(CWorldcoinAddress(pubkey.GetID()) == addr))
+    if (!(CMoneyAddress(pubkey.GetID()) == addr))
     {
         ui->statusLabel_VM->setStyleSheet("QLabel { color: blue; }");
         ui->statusLabel_VM->setText(QString("<nobr>") + tr("Message verification failed.") + QString("</nobr>"));

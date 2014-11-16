@@ -1,7 +1,7 @@
 #include "qrcodedialog.h"
 #include "ui_qrcodedialog.h"
 
-#include "worldcoinunits.h"
+#include "moneyunits.h"
 #include "guiconstants.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
@@ -85,7 +85,7 @@ void QRCodeDialog::genCode()
 
 QString QRCodeDialog::getURI()
 {
-    QString ret = QString("worldcoin:%1").arg(address);
+    QString ret = QString("money:%1").arg(address);
     int paramCount = 0;
 
     ui->outUri->clear();
@@ -95,7 +95,7 @@ QString QRCodeDialog::getURI()
         if (ui->lnReqAmount->validate())
         {
             // even if we allow a non WDC unit input in lnReqAmount, we generate the URI with WDC as unit (as defined in BIP21)
-            ret += QString("?amount=%1").arg(WorldcoinUnits::format(WorldcoinUnits::WDC, ui->lnReqAmount->value()));
+            ret += QString("?amount=%1").arg(MoneyUnits::format(MoneyUnits::WDC, ui->lnReqAmount->value()));
             paramCount++;
         }
         else

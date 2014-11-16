@@ -1,8 +1,8 @@
 // Copyright (c) 2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_LEVELDB_H
-#define WORLDCOIN_LEVELDB_H
+#ifndef MONEY_LEVELDB_H
+#define MONEY_LEVELDB_H
 
 #include "serialize.h"
 
@@ -150,4 +150,4 @@ public:
     }
 };
 
-#endif // WORLDCOIN_LEVELDB_H
+#endif // MONEY_LEVELDB_H

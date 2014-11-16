@@ -1,4 +1,4 @@
-Name Worldcoin
+Name Money
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
@@ -6,11 +6,11 @@ SetCompressor /SOLID lzma
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 0.8.6.2
-!define COMPANY "Worldcoin project"
-!define URL http://www.worldcoin.org/
+!define COMPANY "Money project"
+!define URL http://www.money.org/
 
 # MUI Symbol Definitions
-!define MUI_ICON "..\share\pixmaps\worldcoin.ico"
+!define MUI_ICON "..\share\pixmaps\money.ico"
 !define MUI_WELCOMEFINISHPAGE_BITMAP "..\share\pixmaps\nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
@@ -18,8 +18,8 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER Worldcoin
-!define MUI_FINISHPAGE_RUN $INSTDIR\worldcoin-qt.exe
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER Money
+!define MUI_FINISHPAGE_RUN $INSTDIR\money-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
 !define MUI_UNWELCOMEFINISHPAGE_BITMAP
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
@@ -39,14 +39,14 @@ Var StartMenuGroup
 !insertmacro MUI_UNPAGE_INSTFILES
 
 # Installer attributes
-OutFile worldcoin-0.8.6.2-setup.exe
-InstallDir $PROGRAMFILES\Worldcoin
+OutFile money-0.8.6.2-setup.exe
+InstallDir $PROGRAMFILES\Money
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
 VIProductVersion 0.8.6.2
-VIAddVersionKey ProductName Worldcoin
+VIAddVersionKey ProductName Money
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
@@ -60,13 +60,13 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File ..\release\worldcoin-qt.exe
+    File ..\release\money-qt.exe
     File /oname=COPYING.txt ..\COPYING
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 
     # Remove old wxwidgets-based-bitcoin executable and locales:
-    Delete /REBOOTOK $INSTDIR\worldcoin.exe
+    Delete /REBOOTOK $INSTDIR\money.exe
     RMDir /r /REBOOTOK $INSTDIR\locale
 SectionEnd
 
@@ -76,8 +76,8 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Worldcoin.lnk" $INSTDIR\worldcoin-qt.exe
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall Worldcoin.lnk" $INSTDIR\uninstall.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Money.lnk" $INSTDIR\money-qt.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall Money.lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "${VERSION}"
@@ -87,10 +87,10 @@ Section -post SEC0001
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "worldcoin" "URL Protocol" ""
-    WriteRegStr HKCR "worldcoin" "" "URL:Worldcoin"
-    WriteRegStr HKCR "worldcoin\DefaultIcon" "" $INSTDIR\worldcoin-qt.exe
-    WriteRegStr HKCR "worldcoin\shell\open\command" "" '"$INSTDIR\worldcoin-qt.exe" "%1"'
+    WriteRegStr HKCR "money" "URL Protocol" ""
+    WriteRegStr HKCR "money" "" "URL:Money"
+    WriteRegStr HKCR "money\DefaultIcon" "" $INSTDIR\money-qt.exe
+    WriteRegStr HKCR "money\shell\open\command" "" '"$INSTDIR\money-qt.exe" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -108,16 +108,16 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\worldcoin-qt.exe
+    Delete /REBOOTOK $INSTDIR\money-qt.exe
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     DeleteRegValue HKCU "${REGKEY}\Components" Main
 SectionEnd
 
 Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall Worldcoin.lnk"
-    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Worldcoin.lnk"
-    Delete /REBOOTOK "$SMSTARTUP\Worldcoin.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall Money.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Money.lnk"
+    Delete /REBOOTOK "$SMSTARTUP\Money.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
@@ -125,7 +125,7 @@ Section -un.post UNSEC0001
     DeleteRegValue HKCU "${REGKEY}" Path
     DeleteRegKey /IfEmpty HKCU "${REGKEY}\Components"
     DeleteRegKey /IfEmpty HKCU "${REGKEY}"
-    DeleteRegKey HKCR "worldcoin"
+    DeleteRegKey HKCR "money"
     RmDir /REBOOTOK $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $INSTDIR
     Push $R0

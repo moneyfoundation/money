@@ -20,7 +20,7 @@ enum BlockSource {
     BLOCK_SOURCE_NETWORK
 };
 
-/** Model for Worldcoin network client. */
+/** Model for Money network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT

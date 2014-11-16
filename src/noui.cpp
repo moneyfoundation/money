@@ -5,7 +5,7 @@
 
 #include "ui_interface.h"
 #include "init.h"
-#include "worldcoinrpc.h"
+#include "moneyrpc.h"
 
 #include <string>
 
@@ -44,7 +44,7 @@ static void noui_InitMessage(const std::string &message)
 
 void noui_connect()
 {
-    // Connect worldcoind signal handlers
+    // Connect moneyd signal handlers
     uiInterface.ThreadSafeMessageBox.connect(noui_ThreadSafeMessageBox);
     uiInterface.ThreadSafeAskFee.connect(noui_ThreadSafeAskFee);
     uiInterface.InitMessage.connect(noui_InitMessage);

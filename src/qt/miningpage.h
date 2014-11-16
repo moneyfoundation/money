@@ -1,7 +1,7 @@
 #ifndef MININGPAGE_H
 #define MININGPAGE_H
 
-#include "worldcoingui.h"
+#include "moneygui.h"
 #include <QWidget>
 
 namespace Ui {
@@ -13,7 +13,7 @@ class MiningPage : public QWidget
     Q_OBJECT
     
 public:
-    explicit MiningPage(QWidget *parent, WorldcoinGUI *mainForm);
+    explicit MiningPage(QWidget *parent, MoneyGUI *mainForm);
     ~MiningPage();
 
     enum MessageClass {
@@ -41,7 +41,7 @@ private slots:
 private:
     //int timer_id;
     Ui::MiningPage *ui;
-    WorldcoinGUI *_mainFrom;    
+    MoneyGUI *_mainFrom;    
 
 //protected:
     //virtual void timerEvent( QTimerEvent* );

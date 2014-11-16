@@ -1,8 +1,8 @@
 // Copyright (c) 2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_LIMITEDMAP_H
-#define WORLDCOIN_LIMITEDMAP_H
+#ifndef MONEY_LIMITEDMAP_H
+#define MONEY_LIMITEDMAP_H
 
 #include <map>
 #include <deque>

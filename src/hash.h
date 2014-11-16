@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_HASH_H
-#define WORLDCOIN_HASH_H
+#ifndef MONEY_HASH_H
+#define MONEY_HASH_H
 
 #include "uint256.h"
 #include "serialize.h"

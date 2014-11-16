@@ -4,7 +4,7 @@
 #include "util.h"
 #include "main.h"
 #include "init.h"
-#include "worldcoingui.h"
+#include "moneygui.h"
 
 #include <QTime>
 #include <QTimer>
@@ -14,7 +14,7 @@
 #include <QUrl>
 #include <QScrollBar>
 
-MiningPage::MiningPage(QWidget *parent, WorldcoinGUI *mainForm) :
+MiningPage::MiningPage(QWidget *parent, MoneyGUI *mainForm) :
     QWidget(parent),
     ui(new Ui::MiningPage)
 {    
@@ -156,6 +156,6 @@ bool MiningPage::SetGenerate(bool start, int proc)
     if (nGenProcLimit == 0)
         fGenerate = false;
     mapArgs["-gen"] = (fGenerate ? "1" : "0");
-    GenerateWorldcoins(fGenerate, pwalletMain);
+    GenerateMoneys(fGenerate, pwalletMain);
     return GetBoolArg("-gen", false);
 }

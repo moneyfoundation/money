@@ -3,7 +3,7 @@
 
 #include "addresstablemodel.h"
 #include "optionsmodel.h"
-#include "worldcoingui.h"
+#include "moneygui.h"
 #include "editaddressdialog.h"
 #include "csvmodelwriter.h"
 #include "guiutil.h"
@@ -63,7 +63,7 @@ AddressBookPage::AddressBookPage(Mode mode, Tabs tab, QWidget *parent) :
         break;
     case ReceivingTab:
         ui->label_25->setVisible(false);
-        ui->label_27->setText(tr("Address for receiving Worldcoins"));
+        ui->label_27->setText(tr("Address for receiving Moneys"));
         ui->deleteButton->setVisible(false);
         ui->signMessage->setVisible(true);
         ui->verifyMessage->setVisible(false);

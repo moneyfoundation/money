@@ -52,20 +52,20 @@ bool static TestSplitHost(string test, string host, int port)
 
 BOOST_AUTO_TEST_CASE(netbase_splithost)
 {
-    BOOST_CHECK(TestSplitHost("www.worldcoin.org", "www.worldcoin.org", -1));
-    BOOST_CHECK(TestSplitHost("[www.worldcoin.org]", "www.worldcoin.org", -1));
-    BOOST_CHECK(TestSplitHost("www.worldcoin.org:80", "www.worldcoin.org", 80));
-    BOOST_CHECK(TestSplitHost("[www.worldcoin.org]:80", "www.worldcoin.org", 80));
+    BOOST_CHECK(TestSplitHost("www.armor.ignorelist.com", "www.armor.ignorelist.com", -1));
+    BOOST_CHECK(TestSplitHost("[www.armor.ignorelist.com]", "www.armor.ignorelist.com", -1));
+    BOOST_CHECK(TestSplitHost("www.armor.ignorelist.com:80", "www.armor.ignorelist.com", 80));
+    BOOST_CHECK(TestSplitHost("[www.armor.ignorelist.com]:80", "www.armor.ignorelist.com", 80));
     BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("127.0.0.1:11081", "127.0.0.1", 11081));
+    BOOST_CHECK(TestSplitHost("127.0.0.1:11082", "127.0.0.1", 11082));
     BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[127.0.0.1]:11081", "127.0.0.1", 11081));
+    BOOST_CHECK(TestSplitHost("[127.0.0.1]:11082", "127.0.0.1", 11082));
     BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
-    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:11081", "::ffff:127.0.0.1", 11081));
-    BOOST_CHECK(TestSplitHost("[::]:11081", "::", 11081));
-    BOOST_CHECK(TestSplitHost("::11081", "::11081", -1));
-    BOOST_CHECK(TestSplitHost(":11081", "", 11081));
-    BOOST_CHECK(TestSplitHost("[]:11081", "", 11081));
+    BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:11082", "::ffff:127.0.0.1", 11082));
+    BOOST_CHECK(TestSplitHost("[::]:11082", "::", 11082));
+    BOOST_CHECK(TestSplitHost("::11082", "::11082", -1));
+    BOOST_CHECK(TestSplitHost(":11082", "", 11082));
+    BOOST_CHECK(TestSplitHost("[]:11082", "", 11082));
     BOOST_CHECK(TestSplitHost("", "", -1));
 }
 

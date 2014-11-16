@@ -3,8 +3,8 @@
         <file>res/change_pass.png</file>
         <file>res/encrypt.png</file>
         <file>res/state.png</file>
-        <file>res/world_icon_off.png</file>
-        <file>res/world_icon_on.png</file>
+        <file>res/money_icon_off.png</file>
+        <file>res/money_icon_on.png</file>
         <file>res/sync_1.png</file>
         <file>res/sync_2.png</file>
         <file>res/sync_3.png</file>
@@ -62,8 +62,8 @@
         <file>res/sing_message_icon.png</file>
         <file>res/wallet-background.png</file>
         <file>res/wallet-header.jpg</file>
-        <file>res/worldcoin-logo.png</file>
-        <file>res/worldcoin-qt.rc</file>
+        <file>res/money-logo.png</file>
+        <file>res/money-qt.rc</file>
         <file>res/zerocoin_icon_off.png</file>
         <file>res/zerocoin_icon_on.png</file>
         <file>res/download.png</file>

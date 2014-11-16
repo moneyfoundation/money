@@ -2,9 +2,9 @@
 
 #include "guiutil.h"
 
-#include "worldcoinaddressvalidator.h"
+#include "moneyaddressvalidator.h"
 #include "walletmodel.h"
-#include "worldcoinunits.h"
+#include "moneyunits.h"
 
 #include "util.h"
 #include "init.h"
@@ -58,7 +58,7 @@ QString dateTimeStr(qint64 nTime)
     return dateTimeStr(QDateTime::fromTime_t((qint32)nTime));
 }
 
-QFont worldcoinAddressFont()
+QFont moneyAddressFont()
 {
     QFont font("Monospace");
     font.setStyleHint(QFont::TypeWriter);
@@ -67,9 +67,9 @@ QFont worldcoinAddressFont()
 
 void setupAddressWidget(QLineEdit *widget, QWidget *parent)
 {
-    widget->setMaxLength(WorldcoinAddressValidator::MaxAddressLength);
-    widget->setValidator(new WorldcoinAddressValidator(parent));
-    widget->setFont(worldcoinAddressFont());
+    widget->setMaxLength(MoneyAddressValidator::MaxAddressLength);
+    widget->setValidator(new MoneyAddressValidator(parent));
+    widget->setFont(moneyAddressFont());
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -81,10 +81,10 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseWorldcoinURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseMoneyURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no worldcoin URI
-    if(!uri.isValid() || uri.scheme() != QString("worldcoin"))
+    // return if URI is not valid or is no money URI
+    if(!uri.isValid() || uri.scheme() != QString("money"))
         return false;
 
     SendCoinsRecipient rv;
@@ -115,7 +115,7 @@ bool parseWorldcoinURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!WorldcoinUnits::parse(WorldcoinUnits::WDC, i->second, &rv.amount))
+                if(!MoneyUnits::parse(MoneyUnits::WDC, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -133,18 +133,18 @@ bool parseWorldcoinURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseWorldcoinURI(QString uri, SendCoinsRecipient *out)
+bool parseMoneyURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert worldcoin:// to worldcoin:
+    // Convert money:// to money:
     //
-    //    Cannot handle this later, because worldcoin:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because money:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("worldcoin://"))
+    if(uri.startsWith("money://"))
     {
-        uri.replace(0, 10, "worldcoin:");
+        uri.replace(0, 10, "money:");
     }
     QUrl uriInstance(uri);
-    return parseWorldcoinURI(uriInstance, out);
+    return parseMoneyURI(uriInstance, out);
 }
 
 QString HtmlEscape(const QString& str, bool fMultiLine)
@@ -295,12 +295,12 @@ bool ToolTipToRichTextFilter::eventFilter(QObject *obj, QEvent *evt)
 #ifdef WIN32
 boost::filesystem::path static StartupShortcutPath()
 {
-    return GetSpecialFolderPath(CSIDL_STARTUP) / "Worldcoin.lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / "Money.lnk";
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for Worldcoin.lnk
+    // check for Money.lnk
     return boost::filesystem::exists(StartupShortcutPath());
 }
 
@@ -377,7 +377,7 @@ boost::filesystem::path static GetAutostartDir()
 
 boost::filesystem::path static GetAutostartFilePath()
 {
-    return GetAutostartDir() / "worldcoin.desktop";
+    return GetAutostartDir() / "money.desktop";
 }
 
 bool GetStartOnSystemStartup()
@@ -415,10 +415,10 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         boost::filesystem::ofstream optionFile(GetAutostartFilePath(), std::ios_base::out|std::ios_base::trunc);
         if (!optionFile.good())
             return false;
-        // Write a worldcoin.desktop file to the autostart directory:
+        // Write a money.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
-        optionFile << "Name=Worldcoin\n";
+        optionFile << "Name=Money\n";
         optionFile << "Exec=" << pszExePath << " -min\n";
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -439,10 +439,10 @@ bool SetStartOnSystemStartup(bool fAutoStart) { return false; }
 HelpMessageBox::HelpMessageBox(QWidget *parent) :
     QMessageBox(parent)
 {
-    header = tr("Worldcoin-Qt") + " " + tr("version") + " " +
+    header = tr("Money-Qt") + " " + tr("version") + " " +
         QString::fromStdString(FormatFullVersion()) + "\n\n" +
         tr("Usage:") + "\n" +
-        "  worldcoin-qt [" + tr("command-line options") + "]                     " + "\n";
+        "  money-qt [" + tr("command-line options") + "]                     " + "\n";
 
     coreOptions = QString::fromStdString(HelpMessage());
 
@@ -451,7 +451,7 @@ HelpMessageBox::HelpMessageBox(QWidget *parent) :
         "  -min                   " + tr("Start minimized") + "\n" +
         "  -splash                " + tr("Show splash screen on startup (default: 1)") + "\n";
 
-    setWindowTitle(tr("Worldcoin-Qt"));
+    setWindowTitle(tr("Money-Qt"));
     setTextFormat(Qt::PlainText);
     // setMinimumWidth is ignored for QMessageBox so put in non-breaking spaces to make it wider.
     setText(header + QString(QChar(0x2003)).repeated(50));

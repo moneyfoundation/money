@@ -16,7 +16,7 @@ class QUrl;
 class QAbstractItemView;
 QT_END_NAMESPACE
 
-/** Utility functions used by the Worldcoin Qt UI.
+/** Utility functions used by the Money Qt UI.
  */
 namespace GUIUtil
 {
@@ -24,17 +24,17 @@ namespace GUIUtil
     QString dateTimeStr(const QDateTime &datetime);
     QString dateTimeStr(qint64 nTime);
 
-    // Render Worldcoin addresses in monospace font
-    QFont worldcoinAddressFont();
+    // Render Money addresses in monospace font
+    QFont moneyAddressFont();
 
     // Set up widgets for address and amounts
     void setupAddressWidget(QLineEdit *widget, QWidget *parent);
     void setupAmountWidget(QLineEdit *widget, QWidget *parent);
 
-    // Parse "worldcoin:" URI into recipient object, return true on successful parsing
-    // See Worldcoin URI definition discussion here:
-    bool parseWorldcoinURI(const QUrl &uri, SendCoinsRecipient *out);
-    bool parseWorldcoinURI(QString uri, SendCoinsRecipient *out);
+    // Parse "money:" URI into recipient object, return true on successful parsing
+    // See Money URI definition discussion here:
+    bool parseMoneyURI(const QUrl &uri, SendCoinsRecipient *out);
+    bool parseMoneyURI(QString uri, SendCoinsRecipient *out);
 
     // HTML escaping for rich text controls
     QString HtmlEscape(const QString& str, bool fMultiLine=false);
@@ -96,7 +96,7 @@ namespace GUIUtil
     bool GetStartOnSystemStartup();
     bool SetStartOnSystemStartup(bool fAutoStart);
 
-    /** Help message for Worldcoin-Qt, shown with --help. */
+    /** Help message for Money-Qt, shown with --help. */
     class HelpMessageBox : public QMessageBox
     {
         Q_OBJECT

@@ -22,7 +22,7 @@ public:
     qint64 amount;
 };
 
-/** Interface to Worldcoin wallet from Qt view code. */
+/** Interface to Money wallet from Qt view code. */
 class WalletModel : public QObject
 {
     Q_OBJECT

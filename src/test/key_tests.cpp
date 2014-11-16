@@ -14,10 +14,10 @@ static const string strSecret1     ("6uu5bsZLA2Lm6yCxgwxDxHyZmhYeqBMLQT83Fyq738Y
 static const string strSecret2     ("6vZDRwYgTNidWzmKs9x8QzQGeWCqbdUtNRpEKZMaP67ZSn8XMjb");
 static const string strSecret1C    ("T6UsJv9hYpvDfM5noKYkB3vfeHxhyegkeWJ4y7qKeQJuyXMK11XX");
 static const string strSecret2C    ("T9PBs5kq9QrkBPxeGNWKitMi4XuFVr25jaXTnuopLVZxCUAJbixA");
-static const CWorldcoinAddress addr1 ("LWaFezDtucfCA4xcVEfs3R3xfgGWjSwcZr");
-static const CWorldcoinAddress addr2 ("LXwHM6mRd432EzLJYwuKQMPhTzrgr7ur9K");
-static const CWorldcoinAddress addr1C("LZWK8h7C166niP6GmpUmiGrvn4oxPqQgFV");
-static const CWorldcoinAddress addr2C("Lgb6tdqmdW3n5E12johSuEAqRMt4kAr7yu");
+static const CMoneyAddress addr1 ("LWaFezDtucfCA4xcVEfs3R3xfgGWjSwcZr");
+static const CMoneyAddress addr2 ("LXwHM6mRd432EzLJYwuKQMPhTzrgr7ur9K");
+static const CMoneyAddress addr1C("LZWK8h7C166niP6GmpUmiGrvn4oxPqQgFV");
+static const CMoneyAddress addr2C("Lgb6tdqmdW3n5E12johSuEAqRMt4kAr7yu");
 
 
 static const string strAddressBad("LRjyUS2uuieEPkhZNdQz8hE5YycxVEqSXA");
@@ -45,7 +45,7 @@ void dumpKeyInfo(uint256 privkey)
         key.SetSecret(secret, fCompressed);
         vector<unsigned char> vchPubKey = key.GetPubKey();
         printf("    * pubkey (hex): %s\n", HexStr(vchPubKey).c_str());
-        printf("    * address (base58): %s\n", CWorldcoinAddress(vchPubKey).ToString().c_str());
+        printf("    * address (base58): %s\n", CMoneyAddress(vchPubKey).ToString().c_str());
     }
 }
 #endif

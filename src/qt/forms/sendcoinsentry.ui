@@ -126,7 +126,7 @@ QComboBox {
      <item row="2" column="1">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="WorldcoinAmountField" name="payAmount">
+        <widget class="MoneyAmountField" name="payAmount">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -387,9 +387,9 @@ QPushButton:hover {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>WorldcoinAmountField</class>
+   <class>MoneyAmountField</class>
    <extends>QSpinBox</extends>
-   <header>worldcoinamountfield.h</header>
+   <header>moneyamountfield.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

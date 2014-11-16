@@ -2,8 +2,8 @@
 // Copyright (c) 2009-2012 The Bitcoin Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef WORLDCOIN_DB_H
-#define WORLDCOIN_DB_H
+#ifndef MONEY_DB_H
+#define MONEY_DB_H
 
 #include "main.h"
 
@@ -324,4 +324,4 @@ public:
     bool Read(CAddrMan& addr);
 };
 
-#endif // worldcoin_DB_H
+#endif // money_DB_H

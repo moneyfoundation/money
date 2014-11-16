@@ -18,7 +18,7 @@ AboutDialog::AboutDialog(QWidget *parent) :
     setWindowFlags(Qt::CustomizeWindowHint | Qt::FramelessWindowHint | Qt::Window);
     ui->wCaption->installEventFilter(new DialogMoveHandler(this));
     // Set current copyright year
-    ui->copyrightLabel->setText(tr("Copyright") + QString(" &copy; 2013-%1 ").arg("2014") + tr("Worldcoin"));
+    ui->copyrightLabel->setText(tr("Copyright") + QString(" &copy; 2013-%1 ").arg("2014") + tr("Money"));
 
     // Center window (deleted)
 //    QRect scr = QApplication::desktop()->screenGeometry();

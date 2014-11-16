@@ -3,8 +3,8 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef _WORLDCOINALERT_H_
-#define _WORLDCOINALERT_H_ 1
+#ifndef _MONEYALERT_H_
+#define _MONEYALERT_H_ 1
 
 #include <set>
 #include <string>

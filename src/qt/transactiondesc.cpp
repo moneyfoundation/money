@@ -1,7 +1,7 @@
 #include "transactiondesc.h"
 
 #include "guiutil.h"
-#include "worldcoinunits.h"
+#include "moneyunits.h"
 #include "main.h"
 #include "wallet.h"
 #include "db.h"
@@ -87,7 +87,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                             {
                                 strHTML += "<b>" + tr("From") + ":</b> " + tr("unknown") + "<br>";
                                 strHTML += "<b>" + tr("To") + ":</b> ";
-                                strHTML += GUIUtil::HtmlEscape(CWorldcoinAddress(address).ToString());
+                                strHTML += GUIUtil::HtmlEscape(CMoneyAddress(address).ToString());
                                 if (!wallet->mapAddressBook[address].empty())
                                     strHTML += " (" + tr("own address") + ", " + tr("label") + ": " + GUIUtil::HtmlEscape(wallet->mapAddressBook[address]) + ")";
                                 else
@@ -109,7 +109,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
             // Online transaction
             std::string strAddress = wtx.mapValue["to"];
             strHTML += "<b>" + tr("To") + ":</b> ";
-            CTxDestination dest = CWorldcoinAddress(strAddress).Get();
+            CTxDestination dest = CMoneyAddress(strAddress).Get();
             if (wallet->mapAddressBook.count(dest) && !wallet->mapAddressBook[dest].empty())
                 strHTML += GUIUtil::HtmlEscape(wallet->mapAddressBook[dest]) + " ";
             strHTML += GUIUtil::HtmlEscape(strAddress) + "<br>";
@@ -128,7 +128,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                 nUnmatured += wallet->GetCredit(txout);
             strHTML += "<b>" + tr("Credit") + ":</b> ";
             if (wtx.IsInMainChain())
-                strHTML += WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, nUnmatured)+ " (" + tr("matures in %n more block(s)", "", wtx.GetBlocksToMaturity()) + ")";
+                strHTML += MoneyUnits::formatWithUnit(MoneyUnits::WDC, nUnmatured)+ " (" + tr("matures in %n more block(s)", "", wtx.GetBlocksToMaturity()) + ")";
             else
                 strHTML += "(" + tr("not accepted") + ")";
             strHTML += "<br>";
@@ -138,7 +138,7 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
             //
             // Credit
             //
-            strHTML += "<b>" + tr("Credit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, nNet) + "<br>";
+            strHTML += "<b>" + tr("Credit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, nNet) + "<br>";
         }
         else
         {
@@ -169,12 +169,12 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                             strHTML += "<b>" + tr("To") + ":</b> ";
                             if (wallet->mapAddressBook.count(address) && !wallet->mapAddressBook[address].empty())
                                 strHTML += GUIUtil::HtmlEscape(wallet->mapAddressBook[address]) + " ";
-                            strHTML += GUIUtil::HtmlEscape(CWorldcoinAddress(address).ToString());
+                            strHTML += GUIUtil::HtmlEscape(CMoneyAddress(address).ToString());
                             strHTML += "<br>";
                         }
                     }
 
-                    strHTML += "<b>" + tr("Debit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, -txout.nValue) + "<br>";
+                    strHTML += "<b>" + tr("Debit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, -txout.nValue) + "<br>";
                 }
 
                 if (fAllToMe)
@@ -182,13 +182,13 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                     // Payment to self
                     int64 nChange = wtx.GetChange();
                     int64 nValue = nCredit - nChange;
-                    strHTML += "<b>" + tr("Debit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, -nValue) + "<br>";
-                    strHTML += "<b>" + tr("Credit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, nValue) + "<br>";
+                    strHTML += "<b>" + tr("Debit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, -nValue) + "<br>";
+                    strHTML += "<b>" + tr("Credit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, nValue) + "<br>";
                 }
 
                 int64 nTxFee = nDebit - wtx.GetValueOut();
                 if (nTxFee > 0)
-                    strHTML += "<b>" + tr("Transaction fee") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, -nTxFee) + "<br>";
+                    strHTML += "<b>" + tr("Transaction fee") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, -nTxFee) + "<br>";
             }
             else
             {
@@ -197,14 +197,14 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                 //
                 BOOST_FOREACH(const CTxIn& txin, wtx.vin)
                     if (wallet->IsMine(txin))
-                        strHTML += "<b>" + tr("Debit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, -wallet->GetDebit(txin)) + "<br>";
+                        strHTML += "<b>" + tr("Debit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, -wallet->GetDebit(txin)) + "<br>";
                 BOOST_FOREACH(const CTxOut& txout, wtx.vout)
                     if (wallet->IsMine(txout))
-                        strHTML += "<b>" + tr("Credit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, wallet->GetCredit(txout)) + "<br>";
+                        strHTML += "<b>" + tr("Credit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, wallet->GetCredit(txout)) + "<br>";
             }
         }
 
-        strHTML += "<b>" + tr("Net amount") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, nNet, true) + "<br>";
+        strHTML += "<b>" + tr("Net amount") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, nNet, true) + "<br>";
 
         //
         // Message
@@ -227,10 +227,10 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
             strHTML += "<hr><br>" + tr("Debug information") + "<br><br>";
             BOOST_FOREACH(const CTxIn& txin, wtx.vin)
                 if(wallet->IsMine(txin))
-                    strHTML += "<b>" + tr("Debit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, -wallet->GetDebit(txin)) + "<br>";
+                    strHTML += "<b>" + tr("Debit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, -wallet->GetDebit(txin)) + "<br>";
             BOOST_FOREACH(const CTxOut& txout, wtx.vout)
                 if(wallet->IsMine(txout))
-                    strHTML += "<b>" + tr("Credit") + ":</b> " + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, wallet->GetCredit(txout)) + "<br>";
+                    strHTML += "<b>" + tr("Credit") + ":</b> " + MoneyUnits::formatWithUnit(MoneyUnits::WDC, wallet->GetCredit(txout)) + "<br>";
 
             strHTML += "<br><b>" + tr("Transaction") + ":</b><br>";
             strHTML += GUIUtil::HtmlEscape(wtx.ToString(), true);
@@ -256,9 +256,9 @@ QString TransactionDesc::toHTML(CWallet *wallet, CWalletTx &wtx)
                             {
                                 if (wallet->mapAddressBook.count(address) && !wallet->mapAddressBook[address].empty())
                                     strHTML += GUIUtil::HtmlEscape(wallet->mapAddressBook[address]) + " ";
-                                strHTML += QString::fromStdString(CWorldcoinAddress(address).ToString());
+                                strHTML += QString::fromStdString(CMoneyAddress(address).ToString());
                             }
-                            strHTML = strHTML + " " + tr("Amount") + "=" + WorldcoinUnits::formatWithUnit(WorldcoinUnits::WDC, vout.nValue);
+                            strHTML = strHTML + " " + tr("Amount") + "=" + MoneyUnits::formatWithUnit(MoneyUnits::WDC, vout.nValue);
                             strHTML = strHTML + " IsMine=" + (wallet->IsMine(vout) ? tr("true") : tr("false")) + "</li>";
                         }
                     }

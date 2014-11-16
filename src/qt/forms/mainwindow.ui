@@ -20,11 +20,11 @@
   </property>
   <property name="styleSheet">
    <string notr="true">#MainWindow {
-	background-color: rgb(0, 82, 174);
+	background-color: rgb(88, 88, 88);
 }
 
 QMenu {
-    background-color: #0052AE;
+    background-color: #585858;
     border: 0px solid black;
 }
 
@@ -106,7 +106,7 @@ QWidget[is_header=&quot;true&quot;] {
 /* =========== CheckBox ==============*/
 QCheckBox {
     spacing: 5px;
-	color: #0052AE;
+	color: #585858;
 }
 
 QCheckBox::indicator {
@@ -181,7 +181,7 @@ QPushButton:hover {
 }</string>
     </property>
     <property name="text">
-     <string>Send Coins</string>
+     <string>Send Money</string>
     </property>
     <property name="icon">
      <iconset resource="../res.qrc">
@@ -235,7 +235,7 @@ QPushButton:hover {
 }</string>
     </property>
     <property name="text">
-     <string>Receive Coins</string>
+     <string>Receive Money</string>
     </property>
     <property name="icon">
      <iconset resource="../res.qrc">
@@ -754,7 +754,7 @@ QPushButton:hover {
            </size>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Welcome to Worldcoin. This is your personal account&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Welcome to Money. This is your personal account&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">#wHome {
@@ -807,7 +807,7 @@ QPushButton:hover {
            <property name="styleSheet">
             <string notr="true">#label {
 	
-	background-image: url(:/res/worldcoin-logo.png);
+	background-image: url(:/res/money-logo.png);
 }</string>
            </property>
            <property name="text">
@@ -978,7 +978,7 @@ QPushButton:hover {
     </property>
     <property name="styleSheet">
      <string notr="true">#wStatusBar {
-	background-color: #0052AE;
+	background-color: #585858;
 }
 QLabel {
 	color: #c8e1e1;
@@ -1077,7 +1077,7 @@ QProgressBar::chunk {
       <string notr="true"/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../res.qrc">:/res/world_icon_off.png</pixmap>
+      <pixmap resource="../res.qrc">:/res/money_icon_off.png</pixmap>
      </property>
     </widget>
     <widget class="QLabel" name="label_14">

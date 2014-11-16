@@ -580,7 +580,7 @@ QPushButton:!enabled {
         <string>Show &amp;QR Code</string>
        </property>
        <property name="icon">
-        <iconset resource="../worldcoin.qrc">
+        <iconset resource="../money.qrc">
          <normaloff>:/icons/qrcode</normaloff>:/icons/qrcode</iconset>
        </property>
       </widget>
@@ -762,7 +762,7 @@ QPushButton:pressed:flat {
  </widget>
  <resources>
   <include location="../res.qrc"/>
-  <include location="../worldcoin.qrc"/>
+  <include location="../money.qrc"/>
  </resources>
  <connections>
   <connection>

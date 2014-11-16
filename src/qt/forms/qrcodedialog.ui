@@ -140,7 +140,7 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="WorldcoinAmountField" name="lnReqAmount">
+         <widget class="MoneyAmountField" name="lnReqAmount">
           <property name="enabled">
            <bool>false</bool>
           </property>
@@ -185,9 +185,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>WorldcoinAmountField</class>
+   <class>MoneyAmountField</class>
    <extends>QSpinBox</extends>
-   <header>worldcoinamountfield.h</header>
+   <header>moneyamountfield.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

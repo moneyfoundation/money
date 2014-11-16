@@ -1,9 +1,9 @@
-// Copyright (c) 2009-2012 worldcoin Developers
+// Copyright (c) 2009-2012 money Developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "net.h"
-#include "worldcoinrpc.h"
+#include "moneyrpc.h"
 #include "alert.h"
 #include "base58.h"
 

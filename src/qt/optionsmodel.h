@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-/** Interface from Qt to configuration data structure for Worldcoin client.
+/** Interface from Qt to configuration data structure for Money client.
    To Qt, the options are presented as a list with the different options
    laid out vertically.
    This can be changed to a tree once the settings become sufficiently
@@ -26,7 +26,7 @@ public:
         ProxyPort,         // int
         ProxySocksVersion, // int
         Fee,               // qint64
-        DisplayUnit,       // WorldcoinUnits::Unit
+        DisplayUnit,       // MoneyUnits::Unit
         DisplayAddresses,  // bool
         StartMiningAtStartup, //bool
         Language,          // QString

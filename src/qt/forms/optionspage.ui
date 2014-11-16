@@ -389,7 +389,7 @@ QCheckBox::indicator:checked:pressed {
               <number>0</number>
              </property>
              <item>
-              <widget class="QCheckBox" name="worldcoinAtStartup">
+              <widget class="QCheckBox" name="moneyAtStartup">
                <property name="font">
                 <font>
                  <pointsize>10</pointsize>
@@ -398,10 +398,10 @@ QCheckBox::indicator:checked:pressed {
                 </font>
                </property>
                <property name="toolTip">
-                <string>Automatically start Worldcoin after logging in to the system.</string>
+                <string>Automatically start Money after logging in to the system.</string>
                </property>
                <property name="text">
-                <string>&amp;Start Worldcoin on system login</string>
+                <string>&amp;Start Money on system login</string>
                </property>
               </widget>
              </item>
@@ -418,7 +418,7 @@ QCheckBox::indicator:checked:pressed {
                 <string/>
                </property>
                <property name="text">
-                <string>&amp;Start mining worldcoins on start application</string>
+                <string>&amp;Start mining moneys on start application</string>
                </property>
               </widget>
              </item>
@@ -679,7 +679,7 @@ QCheckBox::indicator:checked:pressed {
                    </font>
                   </property>
                   <property name="toolTip">
-                   <string>The user interface language can be set here. This setting will take effect after restarting Worldcoin.</string>
+                   <string>The user interface language can be set here. This setting will take effect after restarting Money.</string>
                   </property>
                  </widget>
                 </item>
@@ -696,7 +696,7 @@ QCheckBox::indicator:checked:pressed {
                 </font>
                </property>
                <property name="toolTip">
-                <string>Whether to show Worldcoin addresses in the transaction list or not.</string>
+                <string>Whether to show Money addresses in the transaction list or not.</string>
                </property>
                <property name="text">
                 <string>&amp;Display addresses in transaction list</string>
@@ -771,7 +771,7 @@ QCheckBox::indicator:checked:pressed {
              <number>6</number>
             </property>
             <item>
-             <widget class="WorldcoinAmountField" name="transactionFee">
+             <widget class="MoneyAmountField" name="transactionFee">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                 <horstretch>0</horstretch>
@@ -846,7 +846,7 @@ QCheckBox::indicator:checked:pressed {
                 </font>
                </property>
                <property name="toolTip">
-                <string>Automatically open the Worldcoin client port on the router. This only works when your router supports UPnP and it is enabled.</string>
+                <string>Automatically open the Money client port on the router. This only works when your router supports UPnP and it is enabled.</string>
                </property>
                <property name="text">
                 <string>Map port using &amp;UPnP</string>
@@ -872,7 +872,7 @@ QCheckBox::indicator:checked:pressed {
                 </font>
                </property>
                <property name="toolTip">
-                <string>Connect to the Worldcoin network through a SOCKS proxy (e.g. when connecting through Tor).</string>
+                <string>Connect to the Money network through a SOCKS proxy (e.g. when connecting through Tor).</string>
                </property>
                <property name="text">
                 <string>&amp;Connect through SOCKS proxy:</string>
@@ -1299,9 +1299,9 @@ QPushButton:pressed:flat {
  </widget>
  <customwidgets>
   <customwidget>
-   <class>WorldcoinAmountField</class>
+   <class>MoneyAmountField</class>
    <extends>QSpinBox</extends>
-   <header>worldcoinamountfield.h</header>
+   <header>moneyamountfield.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

@@ -653,7 +653,7 @@ QPushButton:pressed:flat {
                 </font>
                </property>
                <property name="toolTip">
-                <string>Verify the message to ensure it was signed with the specified Worldcoin address</string>
+                <string>Verify the message to ensure it was signed with the specified Money address</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {

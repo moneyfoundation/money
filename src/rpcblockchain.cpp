@@ -4,7 +4,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "main.h"
-#include "worldcoinrpc.h"
+#include "moneyrpc.h"
 
 using namespace json_spirit;
 using namespace std;
