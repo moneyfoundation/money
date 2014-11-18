@@ -32,7 +32,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0xe1190e36fd7bbb65ae579fc144a880d8bc085b9c70f21ef501c85b57a1120736");
+uint256 hashGenesisBlock("0x08d2de4710f6b76ce81c280a4c9bf3974c4d9e9a16b0b256174a2cde2d6b4ddd");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Money: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -1083,7 +1083,7 @@ int64 static GetBlockValue(int nHeight, int64 nFees) {
 
 	if(nHeight < nDiffChangeTarget) {
 	if (nHeight == 1) {
-        nSubsidy = 15925248 * COIN; // 6 % Premine
+        nSubsidy = 5308416 * COIN; // 2 % Premine
 	} else {	
 		//this is pre-patch, reward is 32.
 		nSubsidy = 32 * COIN;
@@ -2894,7 +2894,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0xb2;
         pchMessageStart[2] = 0xa8;
         pchMessageStart[3] = 0xcd;
-        hashGenesisBlock = uint256("0x024c25c2161fef590785be5160727b80621f4191a6656837cc49307b19aab62f");
+        hashGenesisBlock = uint256("0x");
     }
 
     //
@@ -2924,19 +2924,19 @@ bool InitBlockIndex() {
     // Only add the genesis block if not reindexing (in which case we reuse the one already on disk)
     if (!fReindex) {
         // Genesis Block:
-        // block.nTime = 1415670676 
-        // block.nNonce = 228204 
-        // block.GetHash = e1190e36fd7bbb65ae579fc144a880d8bc085b9c70f21ef501c85b57a1120736
-        // CBlock(hash=e1190e36fd7bbb65ae579fc144a880d8bc085b9c70f21ef501c85b57a1120736, input=010000000000000000000000000000000000000000000000000000000000000000000000174197e789a76a1fa6dafaa3a1e4854f2f46e80d48dc72720f9763491155f343946b6154f0ff0f1e6c7b0300, PoW=000005be900d36d61ec475d43121131e77c673d083d51b9244e196206bf110bd, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=43f355114963970f7272dc480de8462f4f85e4a1a3fadaa61f6aa789e7974117, nTime=1415670676, nBits=1e0ffff0, nNonce=228204, vtx=1)
-        // CTransaction(hash=43f355114963970f7272dc480de8462f4f85e4a1a3fadaa61f6aa789e7974117, ver=1, vin.size=1, vout.size=1, nLockTime=0)
-        // CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01044c5431312e31312e32303134204a657420637261736820696e20426168616d6173206b696c6c7320392070726f6d696e656e7420706173746f72204d796c6573204d756e726f6520616d6f6e67207468652064656164)
+        // block.nTime = 1416226207 
+        // block.nNonce = 906331 
+        // block.GetHash = 08d2de4710f6b76ce81c280a4c9bf3974c4d9e9a16b0b256174a2cde2d6b4ddd
+        // CBlock(hash=08d2de4710f6b76ce81c280a4c9bf3974c4d9e9a16b0b256174a2cde2d6b4ddd, input=010000000000000000000000000000000000000000000000000000000000000000000000f441af1a37b33a0cdba4269cb0cb6360ddefa9f1a69a8b9ce8ff3bf7b76cfa169fe56954f0ff0f1e5bd40d00, PoW=000005a64fe98923bcf6eefa1cf234f456846b3d2c38875fce5dffddc4d524b1, ver=1, hashPrevBlock=0000000000000000000000000000000000000000000000000000000000000000, hashMerkleRoot=16fa6cb7f73bffe89c8b9aa6f1a9efdd6063cbb09c26a4db0c3ab3371aaf41f4, nTime=1416226207, nBits=1e0ffff0, nNonce=906331, vtx=1)
+        // CTransaction(hash=16fa6cb7f73bffe89c8b9aa6f1a9efdd6063cbb09c26a4db0c3ab3371aaf41f4, ver=1, vin.size=1, vout.size=1, nLockTime=0)
+        // CTxIn(COutPoint(0000000000000000000000000000000000000000000000000000000000000000, 4294967295), coinbase 04ffff001d01043d31372e31312e32303134204a6170616e27732065636f6e6f6d79206d616b65732073757270726973652066616c6c20696e746f20726563657373696f6e)
         // CTxOut(nValue=50.00000000, scriptPubKey=040184710fa689ad5023690c80f3a4)
-        // vMerkleTree: 43f355114963970f7272dc480de8462f4f85e4a1a3fadaa61f6aa789e7974117 
+        // vMerkleTree: 16fa6cb7f73bffe89c8b9aa6f1a9efdd6063cbb09c26a4db0c3ab3371aaf41f4 
 		
 		
 		
         // Genesis block
-        const char* pszTimestamp = "11.11.2014 Jet crash in Bahamas kills 9 prominent pastor Myles Munroe among the dead";
+        const char* pszTimestamp = "17.11.2014 Japan's economy makes surprise fall into recession"; //http://www.bbc.co.uk/news/business-30077122
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -2948,9 +2948,9 @@ bool InitBlockIndex() {
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1415670676;
+        block.nTime    = 1416226207;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 228204;
+        block.nNonce   = 906331;
 
         if (fTestNet)
         {
@@ -2963,7 +2963,7 @@ bool InitBlockIndex() {
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0x43f355114963970f7272dc480de8462f4f85e4a1a3fadaa61f6aa789e7974117"));
+        assert(block.hashMerkleRoot == uint256("0x16fa6cb7f73bffe89c8b9aa6f1a9efdd6063cbb09c26a4db0c3ab3371aaf41f4"));
 
 //
 // If genesis block hash does not match, then generate new genesis hash.

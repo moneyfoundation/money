@@ -1,7 +1,7 @@
 TEMPLATE = app
 TARGET = money-qt
 macx:TARGET = "Money-Qt"
-VERSION = 0.8.6.2
+VERSION = 0.8.7.2
 INCLUDEPATH += src src/json src/qt /usr/include/miniupnpc
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

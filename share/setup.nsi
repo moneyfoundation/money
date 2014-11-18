@@ -5,7 +5,7 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.8.6.2
+!define VERSION 0.8.7.2
 !define COMPANY "Money project"
 !define URL http://www.money.org/
 
@@ -39,13 +39,13 @@ Var StartMenuGroup
 !insertmacro MUI_UNPAGE_INSTFILES
 
 # Installer attributes
-OutFile money-0.8.6.2-setup.exe
+OutFile money-0.8.7.2-setup.exe
 InstallDir $PROGRAMFILES\Money
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 0.8.6.2
+VIProductVersion 0.8.7.2
 VIAddVersionKey ProductName Money
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey CompanyName "${COMPANY}"
